@@ -1,14 +1,15 @@
 # River Invaders
 #### Video Demo:  <URL HERE>
-#### Description: Implementation of a game inspired on River Raid AND Space Invaders arcade games using Pygame Zero framework.
+#### Description:  
+Implementation of a game inspired on River Raid AND Space Invaders arcade games using Pygame Zero framework.
   
 #### Game objective:  
-Make the most points by eliminating enemies.
-Be careful as you can be destroyed if you touch an enemy or if you step outside the river's edge. 
-With each stage, the difficulty of the game increases.
-To move the ship use LEFT and RIGHT arrow keys.
-To increase and reduce speed of the ship use UP and DOWN arrow keys.
-To fire, press SPACE BAR.
+Make the most points by eliminating enemies.  
+Be careful as you can be destroyed if you touch an enemy or if you step outside the river's edge.  
+With each stage, the difficulty of the game increases.  
+To move the ship use LEFT and RIGHT arrow keys.  
+To increase and reduce speed of the ship use UP and DOWN arrow keys.  
+To fire, press SPACE BAR.  
   
 #### Inspiration:  
 At first I thought about making the Pong game, which was the first video game I had as a child and using the Pygame language. However, when watching the seminar "Making Small-Scale 2D Games with LÖVE 2D and Lua" where a reference link to the site [Simple Game Tutorials](https://simplegametutorials.github.io) was passed, I saw that there was also mention of Pygame Zero (which I never heard of it before). As I'm looking to evolve in Python, I decided to give Pygame Zero a chance for the appeal of having a faster development than Pygame. I saw some examples and liked it so I decided to follow this line.
