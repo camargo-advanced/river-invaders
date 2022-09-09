@@ -1,12 +1,26 @@
+'''
+Implementation of a game inspired on River Raid AND Space Invaders arcade games.
+Using Pygame Zero framework.
+
+Game objective: 
+Make the most points by eliminating enemies. 
+Be careful as you can be destroyed if you touch an enemy or if you step outside 
+the river's edge. With each stage, the difficulty of the game increases.
+To move the ship use LEFT and RIGHT arrow keys.
+To increase and reduce speed of the ship use UP and DOWN arrow keys.
+To fire, press SPACE BAR.
+
+September 2022, Marcelo Camargo.
+'''
+
 import pgzrun
-import pygame
 from random import randint
 from enum import Enum
 
 # Screen dimensions
 WIDTH = 1024
 HEIGHT = 768
-TITLE = "Riveroids"
+TITLE = "River Invaders"
 # Speed of objects is in pixels per second
 BG_SPEED = 90
 SHIP_SPEED = 350
