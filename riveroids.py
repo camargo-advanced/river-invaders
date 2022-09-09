@@ -1,8 +1,5 @@
-#TODO: add player lives
-
-
-import pygame
 import pgzrun
+import pygame
 from random import randint
 from enum import Enum
 
@@ -10,7 +7,7 @@ from enum import Enum
 WIDTH = 1024
 HEIGHT = 768
 TITLE = "Riveroids"
-# Speed is in pixels per second
+# Speed of objects is in pixels per second
 BG_SPEED = 90
 SHIP_SPEED = 350
 ENEMY_SPEED = 90
@@ -25,6 +22,12 @@ NEXT_LEVEL_SCORE = 3000
 
 
 class Background():
+    '''
+    Represents the screen background, river, trees and space base station .
+    There are 2 images that fills the whole screen space. The first one is presented only
+    at the beggining of the game. A second one is inserted as the fist one scrolls down
+    and the second one is repeated forever until new game. 
+    '''
     def __init__(self, images):
         # Create 2 actors to represent the first background which will be shown once,
         # and the second background which will be repeated forever.
@@ -68,6 +71,12 @@ class Background():
 
 
 class Ship(Actor):
+    '''
+    There is only 1 ship in the game placed at the bottom center of the screen
+    when the game starts. THere are 4 images for the ship, representing its regular
+    image, damaged image, a 3D rotation to reflect the ship moving right and another
+    one to reflect the image moving left.
+    '''
     def __init__(self, images, **kwargs):
         super().__init__(images["regular"], **kwargs)
         self.images = images
@@ -98,6 +107,11 @@ class Ship(Actor):
 
 
 class Enemy(Actor):
+    '''
+    There are many  types of enemies, each one has a different image and points associated.
+    Enemies bahave like the enemies of Space Invaders wich move from left to right
+    and vice versa.
+    '''
     def __init__(self, image, points=0, x_boundaries=(0,0), pos=(0,0), **kwargs):
         super().__init__(image, **kwargs)
         self.points = points
@@ -127,6 +141,9 @@ class Enemy(Actor):
             self.direction = -self.direction        
 
 class Bullet(Actor):
+    '''
+    Represents the bullets. They move from the bottom to the top of the screen.
+    '''
     def __init__(self, image, pos, **kwargs):
         super().__init__(image, pos, **kwargs)
         self.pos = pos
@@ -136,8 +153,10 @@ class Bullet(Actor):
         self.y -= dy
 
 
-# Create a fleet of enemies, at left or right, at random times and forever
 def create_enemies():
+    '''
+    Create a fleet of enemies, at left or right of screen, at random times and forever.
+    '''
     # This specific enemy object is used as a template only
     enemy_index = randint(0, len(game.enemies_catalog) - 1)
     enemy = Enemy(game.enemies_catalog[enemy_index]["image"])
@@ -151,13 +170,11 @@ def create_enemies():
 
     # Create the fleet at left or right?
     side = randint(0,1)
-    if side == 0:
-        x_boundaries = (LEFT + 50, 2 / 5 * WIDTH)
-    else:
-        x_boundaries = (3 / 5 * WIDTH, RIGHT - 50)
+    if side == 0: x_boundaries = (LEFT + 50, 2 / 5 * WIDTH)
+    else: x_boundaries = (3 / 5 * WIDTH, RIGHT - 50)
     y = -2 * (enemy.height + padding_y)
     
-    # Create a matrix of enemies
+    # Create a matrix of enemies acording to the above parameters
     if game.elapsed_time > game.next_enemy_creation:
         for i in range (0, rows):
             for j in range (0, columns):
@@ -169,8 +186,10 @@ def create_enemies():
         game.next_enemy_creation = game.elapsed_time + randint(3, 5)
            
 def clean_up():
-    # Remove enemies that are out of sight
-    # and penalizes player for not destroying them
+    '''
+    Remove enemies and bullets that are out of sight
+    '''
+    # Remove ememies that are out of sight
     for enemy in game.enemies.copy():
         if enemy.y > HEIGHT + 50:
             game.enemies.remove(enemy)
@@ -181,6 +200,9 @@ def clean_up():
             game.bullets.remove(bullet)
 
 def check_ship_collision():
+    '''
+    check for ship colisions with enemies and river borders
+    '''
     # check for colision with enemies
     index = game.ship.collidelist(game.enemies)
     if index != -1: 
@@ -197,6 +219,9 @@ def check_ship_collision():
         clock.schedule_unique(unhit_ship, 1.0)
 
 def check_bullets_collision():
+    '''
+    check for bullet colisions with enemies 
+    '''
     # check for colision with enemies
     for bullet in game.bullets.copy():
         #collisions = bullet.collidelistall(game.enemies)
@@ -208,8 +233,11 @@ def check_bullets_collision():
             game.enemies.remove(game.enemies[index])
             game.bullets.remove(bullet)
     
-# Control keyboard actions based on keydown event
+
 def on_key_down():
+    '''
+    Control keyboard actions 
+    '''
     if game.stage is GameStage.ready:
         if keyboard.space:
             start_game()
@@ -219,12 +247,13 @@ def on_key_down():
                 sounds.laser.play()
                 game.bullets.append(Bullet("laser-red-7.png", game.ship.pos))
 
-# event hooks
-def start_game():
-    game.stage = GameStage.game
-
+# scheduled functions
 def game_ready():
     game.stage = GameStage.ready
+
+def start_game():
+    game.stage = GameStage.game
+    game.total_score = 0
 
 def unhit_ship():
     game.ship.centerx = WIDTH / 2
@@ -249,14 +278,16 @@ def reset_game():
     game.elapsed_time = 0.0
     game.level = 1
     game.level_score = 0
-    game.total_score = 0
+    #game.total_score = 0
     game.lives = 3
     game.bg.reset()
     game.ship.reset() 
     clock.schedule_unique(game_ready, 3.0)
 
-# Update physics
 def update(dt):
+    '''
+    Update game physics
+    '''
     game.elapsed_time += dt
     if game.stage == GameStage.start:
         game.bg.update(dt)
@@ -283,8 +314,10 @@ def update(dt):
             game.stage = GameStage.game_over
             clock.schedule_unique(reset_game, 1.0)
 
-# Draw objects
 def draw():
+    '''
+    Draw objects
+    '''
     screen.clear()
     game.bg.draw()
     game.ship.draw()       
@@ -292,7 +325,17 @@ def draw():
         enemy.draw()
     for bullet in game.bullets:
         bullet.draw()
-    
+
+    # Show previous player score during preparation for new game    
+    if game.stage == GameStage.start:
+        if game.total_score != 0:
+            screen.draw.text(
+                f"{round(game.total_score):,}",
+                midtop=(WIDTH / 2, 30),
+                color='white',
+                fontsize=110
+            )
+
     # Press SPACE to start and also play GO sound
     if game.stage == GameStage.ready:
         screen.draw.text(
@@ -305,7 +348,7 @@ def draw():
             sounds.go.play()
             game.go_voice_played = True
     
-    # Draw score and lives
+    # Show score and lives during game play
     elif game.stage == GameStage.game:
         screen.draw.text(
             f"{round(game.total_score):,}" ,
@@ -353,6 +396,9 @@ def draw():
             game.game_over_voice_played = True
 
 class GameStage(Enum):
+    '''
+    Game stages
+    '''
     start = 0
     ready = 1
     game = 2
@@ -361,6 +407,9 @@ class GameStage(Enum):
     game_over = 5
 
 class GameState():
+    '''
+    Game state variables
+    '''
     stage = GameStage.start
     bullets = []
     enemies = []
