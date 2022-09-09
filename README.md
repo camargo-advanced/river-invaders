@@ -4,8 +4,7 @@
 Implementation of a game inspired on River Raid AND Space Invaders arcade games using Pygame Zero framework.
   
 #### Game objective:  
-- Make the most points by eliminating enemies.  
-- Be careful as you can be destroyed if you touch an enemy or if you step outside the river's edge.  
+- Make the most points by eliminating enemies. Be careful as you can be destroyed if you touch an enemy or if you step outside the river's edge.  
 - With each stage, the difficulty of the game increases.  
 - To move the ship use LEFT and RIGHT arrow keys.  
 - To increase and reduce speed of the ship use UP and DOWN arrow keys.  
@@ -16,18 +15,18 @@ At first I thought about making the Pong game, which was the first video game I 
 But I realized that it was actually faster to develop with Pygame Zero and so I thought about making another more complex game. I thought about Space Invaders (which I loved too) but for fear of copyright problems, I decided to create something different. As I also liked River Raid, I decided to combine the two and create River Invaders!
   
 #### Files and directories explained:  
-*Directory /images/*: contains all the images used in the game. The images were extracted from the website [Kenney](https://kenney.nl/) and are not copyrighted, and can be used for personal or commercial use. The only exception is the two background images that were created by me using the Gimp application.
-*Directory /sounds/*: audios used in the game. The audios were also obtained from the website Kenney.
-*river-invaders.py* python module: main module that contains 100% of the game's code.
-*requirements.txt* file: dependencies of the game that in fact is reduced only to the library Pygame Zero.
-*screenshot.jpg*: game screenshot.
+- *Directory /images/*: contains all the images used in the game. The images were extracted from the website [Kenney](https://kenney.nl/) and are not copyrighted, and can be used for personal or commercial use. The only exception is the two background images that were created by me using the Gimp application.
+- *Directory /sounds/*: audios used in the game. The audios were also obtained from the website Kenney.
+- *river-invaders.py* python module: main module that contains 100% of the game's code.
+- *requirements.txt* file: dependencies of the game that in fact is reduced only to the library Pygame Zero.
+- *screenshot.jpg*: game screenshot.
   
 ####References used:  
-https://www.youtube.com/watch?v=ynkxX7tsdYo
-https://www.youtube.com/watch?v=zYLA_uO-XH0
-https://simplegametutorials.github.io
-https://pygame-zero.readthedocs.io/en/stable/index.html
-https://www.pygame.org/docs/
+- https://www.youtube.com/watch?v=ynkxX7tsdYo
+- https://www.youtube.com/watch?v=zYLA_uO-XH0
+- https://simplegametutorials.github.io
+- https://pygame-zero.readthedocs.io/en/stable/index.html
+- https://www.pygame.org/docs/
   
 To run, just clone the repository in terminal and run the following commands:  
 `cd river-invaders`  
