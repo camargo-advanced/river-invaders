@@ -1,6 +1,6 @@
 # River Invaders
 #### Video Demo:
-- [Explanatory video of the game](https://youtu.be/tTnZLrJBUBQ)
+- [Explanatory video of the game](https://youtu.be/KSqSzzwtI44)
 - [Screen recording of the game being played](https://youtu.be/3rwQIb1J0IY)
 
 #### Description:
