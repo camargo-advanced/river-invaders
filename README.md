@@ -1,7 +1,13 @@
 # River Invaders
 #### Video Demo:  <URL HERE>
 #### Description:  
-Implementation of a game inspired on River Raid AND Space Invaders arcade games using Pygame Zero framework.
+Game implementation based on classic arcade games River Raid and Space Invaders using Pygame Zero framework.  
+
+#### Project Information: 
+- Project title: River Invaders
+- Name: Marcelo Camargo
+- City: Jundiai / Sao Paulo
+- Country: Brazil
   
 #### Game objective:  
 - Make the most points by eliminating enemies. Be careful as you can be destroyed if you touch an enemy or if you step outside the river's edge.  
