@@ -36,8 +36,8 @@ To run, just clone the repository in terminal and run the following commands:
 `pgzrun river-invaders.py`  
   
 If you have problems installing or running Pygame Zero, go to the following links: 
-[Installing Pygame Zero](https://pygame-zero.readthedocs.io/en/stable/installation.html)
-[Running Pygame Zero in IDLE and other IDEs](https://pygame-zero.readthedocs.io/en/stable/ide-mode.html)  
+- [Installing Pygame Zero](https://pygame-zero.readthedocs.io/en/stable/installation.html)
+- [Running Pygame Zero in IDLE and other IDEs](https://pygame-zero.readthedocs.io/en/stable/ide-mode.html)  
   
 Remember that you need python3 installed on your system before running the above commands.  
     
