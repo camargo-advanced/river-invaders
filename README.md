@@ -38,11 +38,11 @@ But I realized that it was actually faster to develop with Pygame Zero and so I 
 - https://www.pygame.org/docs/
 
 To run, just clone the repository in terminal and run the following commands:
-`cd river-invaders`
-`python3 -m venv .venv`
-`source .venv/bin/activate`
-`pip install -r requirements.txt`
-`pgzrun river-invaders.py`
+`cd river-invaders`  
+`python3 -m venv .venv`  
+`source .venv/bin/activate`  
+`pip install -r requirements.txt`  
+`pgzrun river-invaders.py`  
 
 If you have problems installing or running Pygame Zero, go to the following links:
 - [Installing Pygame Zero](https://pygame-zero.readthedocs.io/en/stable/installation.html)
